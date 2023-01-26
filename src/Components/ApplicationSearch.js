@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function ApplicationSearch() {
   return (
-    <div>ApplicationSearch</div>
+    <div>Application Search Page</div>
   )
 }
