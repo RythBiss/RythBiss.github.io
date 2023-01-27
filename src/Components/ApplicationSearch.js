@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 export default function ApplicationSearch() {
 
+  const [begin, setBegin] = useState(false);
   const [selectedApp, setSelectedApp] = useState(null);
   const [selectedFinish, setSelectedFinish] = useState(null);
   const [selectedPower, setSelectedPower] = useState(null);
@@ -104,18 +105,22 @@ export default function ApplicationSearch() {
 
   const magnaToolObjects = {
     blades: {
+      name: 'Magna-Blades',
       finish: 'smooth',
       tags: ['Glue', 'Paint']
     },
     doubleDots: {
+      name: 'Double Dyma-Dots',
       finish: 'smooth',
       tags: ['Epoxy', 'Mastic', 'Thinset', 'Coatings', 'General Grinding', 'Urethanes', 'High Spots', 'Rain Marks', 'Build Up', 'Resin', 'Surface Prep']
     },
     segs: {
+      name: 'Dyma-Segs',
       finish: 'textured',
       tags: ['Epoxy', 'Mastic', 'Thinset', 'Coatings', 'General Grinding', 'Urethanes', 'High Spots', 'Rain Marks', 'Build Up', 'Resin', 'Surface Prep', 'Non-Slip']
     },
     PCD: {
+      name: 'PCD with Backing Segment',
       finish: 'textured',
       tags: ['Industrial Coatings']
     }
@@ -126,7 +131,7 @@ export default function ApplicationSearch() {
   }, [selectedPower])
 
   useEffect(() => {
-
+    //this feels inconsistent with the other parts, see if you can make it fit the other parts of the code.
     if(selectedApp){
       const validPowerArray = [];
       searchObjectForTags(machineObjects, selectedApp).map(element => {
@@ -150,13 +155,20 @@ export default function ApplicationSearch() {
   return (
     <>
       <h1>Applicatoin Search</h1>
-      <section>
-        <h2>Select Application</h2>
-        {tags.map((element, index) => {
-            return <button key={index} onClick={() => { setSelectedApp(element) }}>{element}</button>
-          })
-        }
-      </section>
+      {begin ?
+      <>
+        <section>
+          <h2>Select Application</h2>
+          {tags.map((element, index) => {
+              return <button key={index} onClick={() => { setSelectedApp(element) }}>{element}</button>
+            })
+          }
+        </section> 
+      </>
+      : 
+      <button onClick={() => setBegin(true)}>Begin Solver</button>
+
+      }
       {selectedApp ? 
         <section>
           <h2>Select Finish</h2>
@@ -194,7 +206,12 @@ export default function ApplicationSearch() {
         <></>
       }
       {selectedMachine ? 
+        <>
         <h2>Solution:</h2>
+        <h4>{selectedApp}</h4>
+        <h4>{selectedFinish[1].name}</h4>
+        <h4>{selectedMachine[1].name}</h4>
+        </>
         :
         <></>
       }
