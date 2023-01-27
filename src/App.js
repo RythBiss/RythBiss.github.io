@@ -53,7 +53,6 @@ const Root =() => {
     <main>
       <Outlet />
     </main>
-    <footer>footer</footer>
   </>
 }
 
