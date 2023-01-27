@@ -66,7 +66,7 @@ export default function ApplicationSearch() {
   const machineObjects = {
     singleDisc: {
       name: 'SEC',
-      power: ['gas'],
+      power: ['electric'],
       range: 'small',
       tags: ['General Grinding', 'Urethanes', 'Epoxy', 'High Spots', 'Mastic', 'Thinset', 'Paint', 'Non-Slip', 'Glue', 'Rain Marks']
     },
@@ -78,9 +78,9 @@ export default function ApplicationSearch() {
     },
     heavyDualDisc: {
       name: '2D-HD',
-      power: ['gas', 'electric'],
+      power: ['gas', 'electric', 'propane'],
       range: 'large',
-      tags: ['Industrial Coatings', 'High Spots']
+      tags: ['Industrial Coatings', 'High Spots', 'General Grinding']
     },
     edgeTurboGrinder: {
       name: 'TMC7',
