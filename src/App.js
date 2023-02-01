@@ -1,6 +1,6 @@
 import './Styles/output.css';
 import React, { useState, useEffect }from 'react'
-import { createBrowserRouter, createRoutesFromElements, Link, Outlet, Route, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, createRoutesFromElements, Link, Outlet, Route, RouterProvider, useLocation } from "react-router-dom";
 import Home from './Components/Home';
 import About from './Components/About';
 import Products from './Components/Products';
@@ -10,6 +10,10 @@ import BuyEDCO from './Components/BuyEDCO';
 import Training from './Components/Training';
 import Login from './Components/Login';
 import Register from './Components/Register';
+import Logo from './images/site-logo.svg'
+import SeachIcon from './images/spy-glass.svg'
+import MenuIcon from './images/menu.svg'
+import Close from './images/close.svg'
 
 function App() {  
 
@@ -40,13 +44,31 @@ const Root =() => {
 
   const [menuOpen, setMenuOpen] = useState(false);
 
+  let location = useLocation();
+
   useEffect(() => {
     console.log(menuOpen)
   }, [menuOpen])
 
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location])
+
   return <>
     <header>
-        <button onClick={ () => {setMenuOpen(prev => !prev)} }>X</button>
+      <button id='logo' onClick={ () => {console.log('logo')} }>
+        <img src={Logo} alt='logo'></img>
+      </button>
+      <button onClick={ () => {console.log('search')} }>
+        <img src={SeachIcon} alt='search' />
+      </button>
+      <button onClick={ () => {setMenuOpen(prev => !prev)} }>{
+      menuOpen ?
+        <img src={Close} alt='Close Menu' />
+        :
+        <img src={MenuIcon} alt='Menu' />
+        }
+      </button>
     </header>
     <main>
       {menuOpen ? 

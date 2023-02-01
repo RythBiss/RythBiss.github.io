@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function BuyEDCO() {
   return (
-    <div>BuyEDCO</div>
+    <h1>BuyEDCO</h1>
   )
 }
