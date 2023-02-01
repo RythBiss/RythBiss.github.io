@@ -1,4 +1,5 @@
-import './App.css';
+import './Styles/output.css';
+import React, { useState, useEffect }from 'react'
 import { createBrowserRouter, createRoutesFromElements, Link, Outlet, Route, RouterProvider } from "react-router-dom";
 import Home from './Components/Home';
 import About from './Components/About';
@@ -10,11 +11,11 @@ import Training from './Components/Training';
 import Login from './Components/Login';
 import Register from './Components/Register';
 
-function App() {
+function App() {  
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<Root />}>
+    <Route className='Route' path='/' element={<Root />}>
       <Route index element={<Home />} />
       <Route path='about' element={<About />} />
       <Route path='products' element={<Products />} />
@@ -36,22 +37,33 @@ const router = createBrowserRouter(
 }
 
 const Root =() => {
+
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    console.log(menuOpen)
+  }, [menuOpen])
+
   return <>
     <header>
-      <nav>
-        <Link to='/'>Home</Link>
-        <Link to='/about'>About</Link>
-        <Link to='/products'>Products</Link>
-        <Link to='/customersupport'>Cutomer Support</Link>
-        <Link to='/buyedco'>Buy EDCO</Link>
-        <Link to='/training'>Training</Link>
-        <Link to='/applicationfinder'>Search by Application</Link>
-        <Link to='/login'>Login</Link>
-        <Link to='/register'>Register</Link>
-      </nav>
+        <button onClick={ () => {setMenuOpen(prev => !prev)} }>X</button>
     </header>
     <main>
-      <Outlet />
+      {menuOpen ? 
+          <nav className='mobile-nav'>
+            <Link to='/'>Home</Link>
+            <Link to='/about'>About</Link>
+            <Link to='/products'>Products</Link>
+            <Link to='/customersupport'>Cutomer Support</Link>
+            <Link to='/buyedco'>Buy EDCO</Link>
+            <Link to='/training'>Training</Link>
+            <Link to='/applicationfinder'>Search by Application</Link>
+            <Link to='/login'>Login</Link>
+            <Link to='/register'>Register</Link>
+          </nav>
+          :
+          <Outlet />
+          }
     </main>
   </>
 }

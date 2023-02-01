@@ -1,0 +1,21 @@
+@use 'colors';
+
+header {
+    background-color: colors.$red;
+    height: 10vh;
+    width: 100%;
+  }
+
+  nav.mobile-nav{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    background-color: colors.$white;
+    > *{
+       text-decoration: none;
+       color: colors.$black;
+    }
+
+    border: 2px solid blue;
+    height: 100%;
+  }
