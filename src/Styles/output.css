@@ -1,4 +1,5 @@
 header {
+  z-index: 1;
   background-color: #D73648;
   height: 10vh;
   min-height: 64px;
@@ -42,8 +43,74 @@ nav.mobile-nav > * {
   margin: 4px;
 }
 
+.image-banner {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  flex-direction: column;
+  height: 45vh;
+}
+
+.image-overlay {
+  background-color: rgba(0, 0, 0, 0.25);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  box-shadow: inset 0 0 32px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.image-overlay > * {
+  color: #F5F5F5;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  margin: 0;
+}
+.image-overlay > h1 {
+  font-size: 3rem;
+}
+.image-overlay > h3 {
+  font-size: 1.5rem;
+}
+.image-overlay > img {
+  width: 50%;
+  max-width: 250px;
+}
+
+@media (orientation: landscape) {
+  .image-banner > img {
+    object-fit: cover;
+    max-width: 100%;
+    max-height: none;
+  }
+}
+@media (orientation: portrait) {
+  .image-banner > img {
+    object-fit: cover;
+    min-width: 100%;
+    max-height: 100%;
+  }
+}
+#appfinder-quicklink {
+  width: 150px;
+  padding: 8px 16px;
+  background-color: #D73648;
+  color: #F5F5F5;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  border-radius: 4px;
+}
+#appfinder-quicklink > h2 {
+  margin: 0;
+}
+
 * {
   font-family: "Barlow Condensed", sans-serif;
+  font-weight: 400;
 }
 
 html, body {
