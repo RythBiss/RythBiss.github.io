@@ -1,0 +1,24 @@
+@use 'colors';
+@use 'extends';
+
+.card{
+    display: flex;
+    flex-direction: column;
+    width: 256px;
+    min-height: 317px;
+    background-color: colors.$red;
+    border-radius: 4px;
+    margin: 16px;
+    overflow: hidden;
+    @extend %box-shadow;
+}
+
+.card-image{
+    min-width: 100%;
+}
+
+.card-text{
+    @extend %white-text;
+    font-size: 1.5rem;
+    margin: 16px;
+}

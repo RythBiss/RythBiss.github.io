@@ -4,7 +4,8 @@
 @use 'header';
 @use 'colors';
 @use 'imageBanner';
-@use 'productsQuick';
+@use 'homeSegmentOne';
+@use 'card';
 
 *{
     font-family: 'Barlow Condensed', sans-serif;
@@ -14,7 +15,7 @@
 html, body{
     margin: 0;
     padding: 0;
-    height: 100%;
+    height: fit-content;
     background-color: colors.$white;
 }
 
@@ -30,4 +31,29 @@ html, body{
 
 main{
     height: 100%;
+}
+
+.white-button{
+    border: none;
+    @extend %box-shadow;
+    border-radius: 2px;
+    font-size: 1.25rem;
+    padding: 4px 16px;
+    margin: 8px auto;
+}
+
+.red-button{
+    border: none;
+    @extend %box-shadow;
+    border-radius: 2px;
+    font-size: 1.25rem;
+    padding: 4px 16px;
+    margin: 8px auto;
+    background-color: colors.$red;
+    color: colors.$white;
+}
+
+.browse-quicklinks{
+    display: flex;
+    flex-wrap: wrap;
 }
