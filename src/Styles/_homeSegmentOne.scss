@@ -1,6 +1,10 @@
 @use 'colors';
 @use 'extends';
 
+.break-flow-container{
+    min-height: 100px;
+}
+
 #appfinder-quicklink{
     @extend %white-text;
     @extend %box-shadow;
@@ -27,14 +31,13 @@
 }
 
 #page-segment{
+    margin: 32px;
     height: fit-content;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 16px;
     > h2{
-        margin-top: 125px;
         max-width: 200px;
         font-size: 2rem;
         @extend %black-text;
@@ -45,5 +48,4 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    max-width: 863px;
 }

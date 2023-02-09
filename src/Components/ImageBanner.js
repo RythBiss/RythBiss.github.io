@@ -8,6 +8,7 @@ export default function ImageBanner(props) {
         <div className='image-overlay'>
         <h3>{props.smallText}</h3>
         <h1>{props.bigText}</h1>
+        {props.buttonText !== undefined && <button className='red-button'>{props.buttonText}</button>}
         <img src={Hexs} alt='hex art'></img>
         </div>
     </div>

@@ -1,13 +1,15 @@
 @use 'colors';
+@use 'extends';
 
-header {
-  z-index: 1;
+  header, footer {
+    z-index: 1;
     background-color: colors.$red;
     height: 10vh;
     min-height: 64px;
     width: 100%;
     display: grid;
     grid-template-columns: auto min-content min-content;
+    grid-template-rows: auto;
     box-shadow: 0px 0px 16px colors.$fade;
     > * {
       height: 10vh;
@@ -25,6 +27,22 @@ header {
     }
   }
 
+  .footer-text{
+    @extend %white-text;
+    display: flex;
+    align-items: center;
+  }
+
+  .socials{
+    display: flex;
+    > button{
+      border: none;
+      background-color: transparent;
+      > img{
+        height: 40%;
+      }
+    }
+  }
   #logo{
     height: 100%;
     width: 150px;

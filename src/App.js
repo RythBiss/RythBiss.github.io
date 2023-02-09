@@ -14,6 +14,11 @@ import Logo from './images/site-logo.svg'
 import SeachIcon from './images/spy-glass.svg'
 import MenuIcon from './images/menu.svg'
 import Close from './images/close.svg'
+import Facebook from './images/facebook.svg'
+import Twitter from './images/twitter.svg'
+import Youtube from './images/youtube.svg'
+import Instagram from './images/instagram.svg'
+import Linkedin from './images/linkedin.svg'
 
 function App() {  
 
@@ -87,6 +92,28 @@ const Root =() => {
           <Outlet />
           }
     </main>
+    <footer>
+      <div className='footer-text'>
+          <h3> © 2023 by EDCO | Privacy Policy | David S., Demo</h3>
+      </div>
+      <div className='socials'>
+          <button>
+            <img src={Facebook} alt='social-link' />
+          </button>
+          <button>
+            <img src={Twitter} alt='social-link' />
+          </button>
+          <button>
+            <img src={Youtube} alt='social-link' />
+          </button>
+          <button>
+            <img src={Instagram} alt='social-link' />
+          </button>
+          <button>
+            <img src={Linkedin} alt='social-link' />
+          </button>
+      </div>
+    </footer>
   </>
 }
 

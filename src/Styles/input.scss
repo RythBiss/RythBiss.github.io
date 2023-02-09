@@ -6,6 +6,7 @@
 @use 'imageBanner';
 @use 'homeSegmentOne';
 @use 'card';
+@use 'redbar';
 
 *{
     font-family: 'Barlow Condensed', sans-serif;
@@ -15,22 +16,27 @@
 html, body{
     margin: 0;
     padding: 0;
-    height: fit-content;
+    min-height: 100vh;
     background-color: colors.$white;
 }
 
 #root{
-    height: 100%;
+    min-height: 100vh;
+    outline: 2px solid dodgerblue;
+
 }
 
 .App{
-    height: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    outline: 2px solid orange;
+
 }
 
 main{
-    height: 100%;
+    min-height: 80vh;
+    outline: 2px solid green;
 }
 
 .white-button{
