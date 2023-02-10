@@ -1,0 +1,26 @@
+@use 'colors';
+@use 'extends';
+
+.red-button, .white-button{
+    border: none;
+    @extend %box-shadow;
+    border-radius: 2px;
+    font-size: 1.25rem;
+    margin: 8px auto;
+    background-color: colors.$red;
+    color: colors.$white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 16px;
+    width: auto;
+    > img{
+        height: 1em;
+        margin: 8px;
+    }
+}
+
+.white-button{
+    background-color: colors.$white;
+    color: colors.$black;
+}

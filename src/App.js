@@ -52,10 +52,6 @@ const Root =() => {
   let location = useLocation();
 
   useEffect(() => {
-    console.log(menuOpen)
-  }, [menuOpen])
-
-  useEffect(() => {
     setMenuOpen(false);
   }, [location])
 

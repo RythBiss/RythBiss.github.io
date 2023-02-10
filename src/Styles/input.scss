@@ -4,9 +4,11 @@
 @use 'header';
 @use 'colors';
 @use 'imageBanner';
-@use 'homeSegmentOne';
+@use 'pageSegment';
 @use 'card';
 @use 'redbar';
+@use 'buttons';
+@use 'appFinder';
 
 *{
     font-family: 'Barlow Condensed', sans-serif;
@@ -22,44 +24,15 @@ html, body{
 
 #root{
     min-height: 100vh;
-    outline: 2px solid dodgerblue;
 
 }
 
 .App{
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    outline: 2px solid orange;
 
 }
 
 main{
     min-height: 80vh;
-    outline: 2px solid green;
-}
-
-.white-button{
-    border: none;
-    @extend %box-shadow;
-    border-radius: 2px;
-    font-size: 1.25rem;
-    padding: 4px 16px;
-    margin: 8px auto;
-}
-
-.red-button{
-    border: none;
-    @extend %box-shadow;
-    border-radius: 2px;
-    font-size: 1.25rem;
-    padding: 4px 16px;
-    margin: 8px auto;
-    background-color: colors.$red;
-    color: colors.$white;
-}
-
-.browse-quicklinks{
-    display: flex;
-    flex-wrap: wrap;
 }

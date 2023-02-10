@@ -1,0 +1,105 @@
+@use 'colors';
+@use 'extends';
+
+#appfinder-quicklink{
+    @extend %white-text;
+    @extend %box-shadow;
+    min-width: 200px;
+    max-width: 300px;
+    min-height: 100px;
+    width: 60%;
+    padding: 8px 16px;
+    background-color: colors.$red;
+    border-radius: 4px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+    margin-top: -16px;
+    > h2{
+        margin: 0;
+    }
+}
+
+.break-flow-container{
+    height: 120px;
+    width: 100%;
+}
+
+.page-segment{
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    > h2{
+        max-width: 200px;
+        font-size: 2rem;
+        @extend %black-text;
+    }
+}
+
+.page-segment-container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.art-container{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.browse-quicklinks{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1000px;
+}
+
+.hex-art{
+    width: 320px;
+}
+
+.alt-position{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    rotate: 180deg;
+}
+
+.training-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    width: 75%;
+}
+
+.training-text{
+    font-size: 3rem;
+    width: 500px;
+    text-align: center;
+}
+
+.training-red-bars-container{
+    width: 50%;
+    min-width: 320px;
+}
+
+@media (max-width: 600px) {
+    .training-text{
+        font-size: 2rem;
+    }
+}

@@ -1,4 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+import Card from './Card';
+import ChevronButton from './ChevronButton';
+import ImageBanner from './ImageBanner'
+import HexArt from '../images/hex-art.svg'
+
 
 export default function ApplicationSearch() {
 
@@ -9,6 +14,7 @@ export default function ApplicationSearch() {
   const [selectedMachine, setSelectedMachine] = useState(null);
   const [validPower, setValidPower] = useState([]);
   const [validMachines, setValidMachines] = useState([]);
+  const [machineImage, setMachineImage] = useState(0);
 
   const searchObjectForTags = (objectList, tag) => {
     if(tags.find(element => element === tag)){
@@ -69,37 +75,43 @@ export default function ApplicationSearch() {
       name: 'SEC',
       power: ['electric'],
       range: 'small',
-      tags: ['General Grinding', 'Urethanes', 'Epoxy', 'High Spots', 'Mastic', 'Thinset', 'Paint', 'Non-Slip', 'Glue', 'Rain Marks']
+      tags: ['General Grinding', 'Urethanes', 'Epoxy', 'High Spots', 'Mastic', 'Thinset', 'Paint', 'Non-Slip', 'Glue', 'Rain Marks'],
+      img: ['', 'https://www.edcoinc.com/storage/product-slider/magna-trap-r-single-disc-floor-grinder/SEC-NG-Machine-Slider.jpg', '']
     },
     dualDisc: {
       name: '2EC-NG',
       power: ['gas', 'electric'],
       range: 'large',
-      tags: ['General Grinding', 'Urethanes', 'Epoxy', 'High Spots', 'Mastic', 'Thinset', 'Paint', 'Non-Slip', 'Glue', 'Rain Marks']
+      tags: ['General Grinding', 'Urethanes', 'Epoxy', 'High Spots', 'Mastic', 'Thinset', 'Paint', 'Non-Slip', 'Glue', 'Rain Marks'],
+      img: ['https://www.edcoinc.com/storage/product-slider/magna-trap-r-dual-disc-floor-grinder/2GC-NG-Machine-Slider.jpg', 'https://www.edcoinc.com/storage/product-slider/magna-trap-r-dual-disc-floor-grinder/2EC-NG-Machine-Slider.jpg', '']
     },
     heavyDualDisc: {
       name: '2D-HD',
-      power: ['gas', 'electric', 'propane'],
+      power: ['electric', 'propane'],
       range: 'large',
-      tags: ['Industrial Coatings', 'High Spots', 'General Grinding']
+      tags: ['Industrial Coatings', 'High Spots', 'General Grinding'],
+      img: ['', 'https://www.edcoinc.com/storage/product-slider/magna-trap-r-heavy-duty-floor-grinder-polisher/2D-HD-Electric-Machine-Slider.jpg', 'https://www.edcoinc.com/storage/product-slider/magna-trap-r-heavy-duty-floor-grinder-polisher/2D-HD-Propane-Machine-Slider.jpg']
     },
     edgeTurboGrinder: {
       name: 'TMC7',
       power: ['gas', 'electric'],
       range: 'small',
-      tags: ['High Spots', 'Build Up', 'Coatings', 'Resin', 'Surface Prep']
+      tags: ['High Spots', 'Build Up', 'Coatings', 'Resin', 'Surface Prep'],
+      img: ['https://www.edcoinc.com/storage/product-slider/magna-trap-r-7-turbo-edge-grinder/TMC-7-Gas-Machine-Slider.jpg', 'https://www.edcoinc.com/storage/product-slider/magna-trap-r-7-turbo-edge-grinder/TMC-7-Electric-Machine-Slider.jpg', '']
     },
     lightTurboGrinder: {
       name: 'TL9',
       power: ['electric'],
       range: 'small',
-      tags: ['High Spots', 'Build Up', 'Coatings', 'Resin', 'Surface Prep']
+      tags: ['High Spots', 'Build Up', 'Coatings', 'Resin', 'Surface Prep'],
+      img: ['', 'https://www.edcoinc.com/storage/product-slider/magna-trap-r-turbo-lite-grinder/TL-9-Machine-Slider.jpg', '']
     },
     turboGrinder: {
       name: 'TG-10',
       power: ['gas', 'electric', 'propane'],
       range: 'small',
-      tags: ['High Spots', 'Build Up', 'Coatings', 'Resin', 'Surface Prep']
+      tags: ['High Spots', 'Build Up', 'Coatings', 'Resin', 'Surface Prep'],
+      img: ['https://www.edcoinc.com/storage/product-slider/magna-trap-10-turbo-grinder/TG-10-Gas-Machine-Slider.jpg', 'https://www.edcoinc.com/storage/product-slider/magna-trap-10-turbo-grinder/TG-10-Electric-Machine.jpg', 'https://www.edcoinc.com/storage/product-slider/magna-trap-10-turbo-grinder/TG-10-Propane-Machine-Slider.jpg']
     },
   }
 
@@ -107,27 +119,42 @@ export default function ApplicationSearch() {
     blades: {
       name: 'Magna-Blades',
       finish: 'smooth',
-      tags: ['Glue', 'Paint']
+      tags: ['Glue', 'Paint'],
+      img: 'https://edcostore.com/wp-content/uploads/2017/04/12501LC_MagnaBlade.jpg'
     },
     doubleDots: {
       name: 'Double Dyma-Dots',
       finish: 'smooth',
-      tags: ['Epoxy', 'Mastic', 'Thinset', 'Coatings', 'General Grinding', 'Urethanes', 'High Spots', 'Rain Marks', 'Build Up', 'Resin', 'Surface Prep']
+      tags: ['Epoxy', 'Mastic', 'Thinset', 'Coatings', 'General Grinding', 'Urethanes', 'High Spots', 'Rain Marks', 'Build Up', 'Resin', 'Surface Prep'],
+      img: 'https://edcostore.com/wp-content/uploads/2017/04/QC2B-MC-0030_DoubleDotGray.jpg'
     },
     segs: {
       name: 'Dyma-Segs',
       finish: 'textured',
-      tags: ['Epoxy', 'Mastic', 'Thinset', 'Coatings', 'General Grinding', 'Urethanes', 'High Spots', 'Rain Marks', 'Build Up', 'Resin', 'Surface Prep', 'Non-Slip']
+      tags: ['Epoxy', 'Mastic', 'Thinset', 'Coatings', 'General Grinding', 'Urethanes', 'High Spots', 'Rain Marks', 'Build Up', 'Resin', 'Surface Prep', 'Non-Slip'],
+      img: 'https://edcostore.com/wp-content/uploads/2017/04/QC2S-MC-0018-1.jpg'
     },
     PCD: {
       name: 'PCD with Backing Segment',
       finish: 'textured',
-      tags: ['Industrial Coatings']
+      tags: ['Industrial Coatings'],
+      img: 'https://edcostore.com/wp-content/uploads/2017/04/QC-PCD1-LB_DymaPCD_Blue.jpg'
     }
   }
 
   useEffect(() => {
     getValidMachines(selectedApp, selectedPower)
+    switch (selectedPower){
+      case 'gas':
+        setMachineImage(0);
+        break;
+      case 'electric':
+        setMachineImage(1);
+        break;
+      case 'propane':
+        setMachineImage(2);
+        break;
+    }
   }, [selectedPower])
 
   useEffect(() => {
@@ -146,75 +173,70 @@ export default function ApplicationSearch() {
 
   }, [selectedFinish])
 
-  useEffect(() => {
-    console.log(selectedApp)
-    console.log(selectedFinish)
-    console.log(selectedMachine)
-  }, [selectedMachine])
-
   return (
     <>
-      <h1>Applicatoin Search</h1>
-      {begin ?
-      <>
-        <section>
-          <h2>Select Application</h2>
-          {tags.map((element, index) => {
-              return <button key={index} onClick={() => { setSelectedApp(element) }}>{element}</button>
-            })
-          }
-        </section> 
-      </>
-      : 
-      <button onClick={() => setBegin(true)}>Begin Solver</button>
+      <ImageBanner image='https://cf.specifyconcrete.org/img/pouring-concrete-over-rebar.jpg' smallText="Don't know where to start?" bigText="Let's find what you need" />
+        <div className='app-finder-container'>
 
-      }
-      {selectedApp ? 
-        <section>
-          <h2>Select Finish</h2>
-          {
-            searchObjectForTags(magnaToolObjects, selectedApp).map((element, index) => {
-              return <button onClick={() => { setSelectedFinish(element) }} key={index}>{element[1].finish}</button>
-            })
-          }
-        </section>
-        :
-        <></>
-      }
-      {selectedFinish ? 
-        <section>
-          <h2>Select Power</h2>
-          {
-            validPower.map((element, index) => {
-              return <button key={index} onClick={() => {setSelectedPower(element)}}>{element}</button>
-            })
-          }
-        </section>
-        :
-        <></>
-      }
-      {selectedPower ? 
-        <section>
-          <h2>Select Machine</h2>
-          {
-            validMachines.map((element, index) => {
-              return <button key={index} onClick={() => setSelectedMachine(element)}>{element[1].name}</button>
-            })
-          }
-        </section>
-        :
-        <></>
-      }
-      {selectedMachine ? 
-        <>
-        <h2>Solution:</h2>
-        <h4>{selectedApp}</h4>
-        <h4>{selectedFinish[1].name}</h4>
-        <h4>{selectedMachine[1].name}</h4>
-        </>
-        :
-        <></>
-      }
+          <section className='solution-section'>
+            <h2 className='app-finder-head-text'>Solution:</h2>
+            <div className='app-finder-solution'>
+              {selectedMachine &&
+                <div className='solution-cards-container'>
+                  <Card text={selectedFinish[1].name} image={selectedFinish[1].img} />
+                  <Card text={selectedMachine[1].name} image={selectedMachine[1].img[machineImage]} />
+                </div>
+              }
+            </div>
+          </section> 
+
+
+          <section className='app-section'>
+            <h2 className='app-finder-head-text'>Select Application</h2>
+            <div className='app-finder-button-container'>
+            {tags.map((element, index) => {
+                return <ChevronButton key={index} text={element} onClick={() => { setSelectedApp(element) }}/>
+              })
+            }
+            </div>
+          </section>
+
+
+          <section className='finish-section'>
+              <h2 className='app-finder-head-text'>Select Finish</h2>
+                <div className='app-finder-button-container'>
+                  {selectedApp && 
+                    searchObjectForTags(magnaToolObjects, selectedApp).map((element, index) => {
+                      return <ChevronButton onClick={() => { setSelectedFinish(element) }}  key={index}  text={element[1].finish}/>
+                    })
+                  }
+                </div>
+          </section>
+
+          <section className='power-section'>
+              <h2 className='app-finder-head-text'>Select Power</h2>
+              <div className='app-finder-button-container'>
+                {
+                  validPower.map((element, index) => {
+                    return <ChevronButton key={index} onClick={() => {setSelectedPower(element)}} text={element}/>
+                  })
+                }
+              </div>
+          </section>
+
+          
+          <section className='machine-section'>
+            <h2 className='app-finder-head-text'>Select Machine</h2>
+            <div className='app-finder-button-container'>
+            {
+              validMachines.map((element, index) => {
+                return <Card key={index} onClick={() => setSelectedMachine(element)} text={element[1].name} image={element[1].img[machineImage]} />
+              })
+            }
+            </div>
+          </section>
+           
+        </div>
     </>
   )
 }

@@ -5,10 +5,10 @@
     background-color: colors.$red;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: 64px;
     border-radius: 4px;
     padding: 16px;
-    width: 256px;
     margin: 16px;
     > * {
        max-height: 100%; 
