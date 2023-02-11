@@ -2,21 +2,20 @@
 @use 'extends';
 
 .app-finder-container{
-    display: grid;
+    display: flex;
     position: relative;
-    flex-wrap: wrap;
-    min-height: 100vh;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto auto 0.5fr 0.5fr;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
     > section{
         display: flex;
         flex-direction: column;
-        align-items: center;
         border-radius: 4px;
         @extend %box-shadow;
         padding: 16px 8px;
-        margin: 8px 8px;
-        justify-content: center;
+        width: 50%;
+        background-color: colors.$white;
     }
 }
 
@@ -31,8 +30,14 @@
 
 .app-finder-head-text{
     margin: 0;
-    margin-bottom: 16px;
     font-size: 3rem;
+    @extend %black-text;
+    margin: 16px;
+}
+
+.app-finder-box-text{
+    margin: 0;
+    font-size: 2rem;
     @extend %black-text;
     margin: 16px;
 }
@@ -45,41 +50,28 @@
     flex-direction: column;
 }
 
-.solution-section{
-    grid-column-start: 1;
-    grid-column-end: 4;
-    grid-row-start: 0;
-    grid-row-end: 1;
-}
-
-.app-section{
-    grid-column-start: 1;
-    grid-column-end: 4;
-    grid-row-start: 1;
-    grid-row-end: 2;
-}
-
-.finish-section{
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 3;
-    grid-row-end: 4;
-}
-
-.power-section{
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 4;
-    grid-row-end: 5;
-}
-
-.machine-section{
-    grid-column-start: 2;
-    grid-column-end: 5;
-    grid-row-start: 3;
-    grid-row-end: 5;
-}
-
 .solution-cards-container{
     display: flex;
+}
+
+.progress-bar{
+    height: 30px;
+    background-color: colors.$red;
+    width: 50%;
+    padding: 8px;
+    border-radius: 4px;    
+}
+
+.tool-nav-container{
+    display: flex;
+    justify-content: center;
+    > button{
+        margin: 16px;
+        padding: 8px 16px;
+    }
+}
+
+.app-finder-page{
+    position: relative;
+    min-height: 55vh;
 }

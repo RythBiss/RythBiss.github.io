@@ -7,7 +7,6 @@ import HexArt from '../images/hex-art.svg'
 
 export default function ApplicationSearch() {
 
-  const [begin, setBegin] = useState(false);
   const [selectedApp, setSelectedApp] = useState(null);
   const [selectedFinish, setSelectedFinish] = useState(null);
   const [selectedPower, setSelectedPower] = useState(null);
@@ -15,42 +14,9 @@ export default function ApplicationSearch() {
   const [validPower, setValidPower] = useState([]);
   const [validMachines, setValidMachines] = useState([]);
   const [machineImage, setMachineImage] = useState(0);
+  const [cyclePos, setCyclePos] = useState(0);
 
-  const searchObjectForTags = (objectList, tag) => {
-    if(tags.find(element => element === tag)){
-      const entries = Object.entries(objectList);
-      let matchingEntries = [];
-  
-      entries.forEach((element) => {
-        const found = element[1].tags.find(element => element === tag);
 
-        if(found){
-          matchingEntries.push(element);
-        }
-      });
-  
-      return matchingEntries;
-
-    }else{
-
-      return null;
-
-    }
-  }
-
-  const getValidMachines = (application, powerOption) => {
-    const machines = Object.entries(machineObjects);
-    let validMachinesArray = [];
-
-    machines.forEach((element, i) => {
-      const found = element[1].power.find(option => option === powerOption);
-      const tagsFound = element[1].tags.find(app => app === application);
-      
-      if(found && tagsFound) validMachinesArray.push(element);
-    });
-    
-    setValidMachines(validMachinesArray);
-  }
 
   const tags = [
     'General Grinding',
@@ -142,6 +108,56 @@ export default function ApplicationSearch() {
     }
   }
 
+
+
+  const searchObjectForTags = (objectList, tag) => {
+    if(tags.find(element => element === tag)){
+      const entries = Object.entries(objectList);
+      let matchingEntries = [];
+  
+      entries.forEach((element) => {
+        const found = element[1].tags.find(element => element === tag);
+  
+        if(found){
+          matchingEntries.push(element);
+        }
+      });
+  
+      return matchingEntries;
+  
+    }else{
+  
+      return null;
+  
+    }
+  }
+  
+  const getValidMachines = (application, powerOption) => {
+    const machines = Object.entries(machineObjects);
+    let validMachinesArray = [];
+  
+    machines.forEach((element, i) => {
+      const found = element[1].power.find(option => option === powerOption);
+      const tagsFound = element[1].tags.find(app => app === application);
+      
+      if(found && tagsFound) validMachinesArray.push(element);
+    });
+    
+    setValidMachines(validMachinesArray);
+  }
+  
+  const progressCycle = (dir) => {
+    if(cyclePos + dir > elementCycle.length-1){
+      setCyclePos(0);
+    }else if(cyclePos + dir < 0){
+      setCyclePos(elementCycle.length-1);
+    }else{
+      setCyclePos(prev => prev += dir);
+    }
+  }
+
+
+
   useEffect(() => {
     getValidMachines(selectedApp, selectedPower)
     switch (selectedPower){
@@ -173,70 +189,104 @@ export default function ApplicationSearch() {
 
   }, [selectedFinish])
 
+
+
+  const solutionElement = <>
+  <h2 className='app-finder-box-text'>Solution:</h2>
+  <section>
+    <div className='app-finder-button-container'>
+      {selectedMachine &&
+          <>
+          <Card text={selectedFinish[1].name} image={selectedFinish[1].img} />
+          <Card text={selectedMachine[1].name} image={selectedMachine[1].img[machineImage]} />
+          </>
+      }
+    </div>
+  </section> 
+</>
+
+const appElement = <>
+  <h2 className='app-finder-box-text'>Select Application</h2>
+  <section>
+    <div className='app-finder-button-container'>
+    {tags.map((element, index) => {
+        return <ChevronButton key={index} text={element} onClick={() => {
+          setSelectedApp(element);
+          progressCycle(1);
+         }}/>
+      })
+    }
+    </div>
+  </section>
+</>
+
+const finishElement = <>
+  <h2 className='app-finder-box-text'>Select Finish</h2>
+  <section>
+    <div className='app-finder-button-container'>
+      {selectedApp && 
+        searchObjectForTags(magnaToolObjects, selectedApp).map((element, index) => {
+          return <ChevronButton onClick={() => {
+            setSelectedFinish(element);
+            progressCycle(1);
+          }}  key={index}  text={element[1].finish}/>
+        })
+      }
+    </div>
+  </section>
+</>
+
+const powerElement = <>
+  <h2 className='app-finder-box-text'>Select Power</h2>
+  <section>
+    <div className='app-finder-button-container'>
+      {
+        validPower.map((element, index) => {
+          return <ChevronButton key={index} onClick={() => {
+            setSelectedPower(element);
+            progressCycle(1);
+          }} text={element}/>
+        })
+      }
+    </div>
+  </section>
+</>
+
+const machineElement = <>
+  <h2 className='app-finder-box-text'>Select Machine</h2>
+  <section className='card-container'>
+    <div className='app-finder-button-container'>
+    {
+      validMachines.map((element, index) => {
+        return <Card key={index} onClick={() => {
+          setSelectedMachine(element);
+          progressCycle(1);
+        }} text={element[1].name} image={element[1].img[machineImage]} />
+      })
+    }
+    </div>
+  </section>
+</>
+
+const elementCycle = [appElement, finishElement, powerElement, machineElement, solutionElement];
+
   return (
     <>
-      <ImageBanner image='https://cf.specifyconcrete.org/img/pouring-concrete-over-rebar.jpg' smallText="Don't know where to start?" bigText="Let's find what you need" />
-        <div className='app-finder-container'>
-
-          <section className='solution-section'>
-            <h2 className='app-finder-head-text'>Solution:</h2>
-            <div className='app-finder-solution'>
-              {selectedMachine &&
-                <div className='solution-cards-container'>
-                  <Card text={selectedFinish[1].name} image={selectedFinish[1].img} />
-                  <Card text={selectedMachine[1].name} image={selectedMachine[1].img[machineImage]} />
-                </div>
-              }
-            </div>
-          </section> 
-
-
-          <section className='app-section'>
-            <h2 className='app-finder-head-text'>Select Application</h2>
-            <div className='app-finder-button-container'>
-            {tags.map((element, index) => {
-                return <ChevronButton key={index} text={element} onClick={() => { setSelectedApp(element) }}/>
-              })
-            }
-            </div>
-          </section>
-
-
-          <section className='finish-section'>
-              <h2 className='app-finder-head-text'>Select Finish</h2>
-                <div className='app-finder-button-container'>
-                  {selectedApp && 
-                    searchObjectForTags(magnaToolObjects, selectedApp).map((element, index) => {
-                      return <ChevronButton onClick={() => { setSelectedFinish(element) }}  key={index}  text={element[1].finish}/>
-                    })
-                  }
-                </div>
-          </section>
-
-          <section className='power-section'>
-              <h2 className='app-finder-head-text'>Select Power</h2>
-              <div className='app-finder-button-container'>
-                {
-                  validPower.map((element, index) => {
-                    return <ChevronButton key={index} onClick={() => {setSelectedPower(element)}} text={element}/>
-                  })
-                }
-              </div>
-          </section>
-
-          
-          <section className='machine-section'>
-            <h2 className='app-finder-head-text'>Select Machine</h2>
-            <div className='app-finder-button-container'>
-            {
-              validMachines.map((element, index) => {
-                return <Card key={index} onClick={() => setSelectedMachine(element)} text={element[1].name} image={element[1].img[machineImage]} />
-              })
-            }
-            </div>
-          </section>
-           
+      <ImageBanner image='https://cf.specifyconcrete.org/img/pouring-concrete-over-rebar.jpg' smallText="Don't know where to start?" bigText="Use our application solver tool" />
+      <div className='app-finder-page'>
+        <div className='art-container'>
+          <img className='hex-art' src={HexArt} alt='hex art'/>
+          <img className='hex-art alt-position' src={HexArt} alt='hex art'/>
         </div>
+        <div className='app-finder-container'>  
+          <h2 className='app-finder-head-text'>Application Solver Tool</h2>
+          <div className='progress-bar' />
+          {elementCycle[cyclePos]}
+          <div className='tool-nav-container '>
+            {cyclePos > 0 && <button onClick={() => progressCycle(-1)} className='red-button'>Back</button>}
+          </div>
+        </div>
+      </div>
     </>
   )
 }

@@ -26,9 +26,10 @@
       }
     }
   }
-
+  
   .footer-text{
     @extend %white-text;
+    font-size: 0.9rem;
     display: flex;
     align-items: center;
     margin: auto 16px;

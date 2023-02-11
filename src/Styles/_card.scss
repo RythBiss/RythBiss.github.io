@@ -8,16 +8,21 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    border-radius: 4px;
+    @extend %box-shadow;
 
     background-color: colors.$red;
+    overflow: hidden;
 
-    max-width: 256px;
+    width: 100%;
+    max-width: 200px;
 }
 
 .card-frame{
     margin: 0;
     overflow: hidden;
-    background-color: white;    aspect-ratio: 1/1;
+    background-color: white;
+     aspect-ratio: 1/1;
 
     display: flex;
     justify-content: center;
@@ -33,7 +38,7 @@
 
 .card-text{
     @extend %white-text;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     margin: 16px;
     text-align: center;
 }
