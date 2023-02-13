@@ -107,17 +107,22 @@
     min-height: 50vh;
     position: relative;
     > p{
-        width: 75%;
+        width: 60%;
         text-align: left;
         font-size: 1.75rem;
         @extend %black-text;
         margin-bottom: 64px;
+        background-color: colors.$white;
+        @extend %box-shadow;
+        border-radius: 4px;
+        padding: 16px 32px;
+        z-index: 1;
     }
 
     > h1{
         font-size: 3rem;
         @extend %black-text;
-        margin: 64px 16px 16px 16px;
+        margin: 16px;
     }
     >img{
         width: 200px;
@@ -125,7 +130,7 @@
 }
 
 .last-about-para{
-    padding-bottom: 256px;
+    margin-bottom: 100px;
 }
 
 @media (max-width: 600px) {
