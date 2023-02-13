@@ -5,7 +5,7 @@
   margin: 0;
 }
 
-.app-finder-head-text, .app-finder-box-text, .page-segment > h2 {
+.app-finder-head-text, .app-finder-box-text, .page-segment > h2, .about-segment > p, .about-segment > h1 {
   color: #353535;
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   text-align: center;
@@ -229,9 +229,42 @@ nav.mobile-nav > * {
   min-width: 320px;
 }
 
+.about-segment {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  position: relative;
+}
+.about-segment > p {
+  width: 75%;
+  text-align: left;
+  font-size: 1.75rem;
+  margin-bottom: 64px;
+}
+.about-segment > h1 {
+  font-size: 3rem;
+  margin: 64px 16px 16px 16px;
+}
+.about-segment > img {
+  width: 200px;
+}
+
+.last-about-para {
+  padding-bottom: 256px;
+}
+
 @media (max-width: 600px) {
   .training-text {
     font-size: 2rem;
+  }
+  .about-segment > p {
+    font-size: 1.25rem;
+  }
+  .about-segment > h1 {
+    font-size: 2.5rem;
   }
 }
 .card {
@@ -313,8 +346,9 @@ nav.mobile-nav > * {
   position: relative;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 32px;
+  min-height: 900px;
 }
 .app-finder-container > section {
   display: flex;
@@ -360,10 +394,23 @@ nav.mobile-nav > * {
 
 .progress-bar {
   height: 30px;
-  background-color: #D73648;
   width: 50%;
-  padding: 8px;
   border-radius: 4px;
+  border: 2px solid rgba(0, 0, 0, 0.4784313725);
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+}
+
+.progress-bar-filler {
+  height: 100%;
+  background-color: #D73648;
+  width: 25%;
+}
+
+.progress-bar-empty {
+  height: 100%;
+  width: 25%;
 }
 
 .tool-nav-container {

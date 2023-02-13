@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import Card from './Card';
 import ChevronButton from './ChevronButton';
 import ImageBanner from './ImageBanner'
@@ -280,7 +280,12 @@ const elementCycle = [appElement, finishElement, powerElement, machineElement, s
         </div>
         <div className='app-finder-container'>  
           <h2 className='app-finder-head-text'>Application Solver Tool</h2>
-          <div className='progress-bar' />
+          <div className='progress-bar'>
+            <div className={`${cyclePos > 0 ? 'progress-bar-filler' : 'progress-bar-empty'}`} />
+            <div className={`${cyclePos > 1 ? 'progress-bar-filler' : 'progress-bar-empty'}`}/>
+            <div className={`${cyclePos > 2 ? 'progress-bar-filler' : 'progress-bar-empty'}`}/>
+            <div className={`${cyclePos > 3 ? 'progress-bar-filler' : 'progress-bar-empty'}`}/>
+          </div>
           {elementCycle[cyclePos]}
           <div className='tool-nav-container '>
             {cyclePos > 0 && <button onClick={() => progressCycle(-1)} className='red-button'>Back</button>}

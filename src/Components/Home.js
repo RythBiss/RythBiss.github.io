@@ -7,8 +7,12 @@ import ImageBanner from './ImageBanner'
 import RedBar from './RedBar'
 import ChevronButton from './ChevronButton'
 import HexArt from '../images/hex-art.svg'
+import { useNavigate } from 'react-router-dom'
 
 export default function Home() {
+
+  const nav = useNavigate();
+
   return (
     <>
       <ImageBanner image='https://www.talissadecor.com/wp-content/uploads/2016/09/products-2832.jpg' smallText='Rental Tough' bigText='High quality equipment for your fleet' />
@@ -20,7 +24,7 @@ export default function Home() {
         <div className='break-flow-container'>
           <div id='appfinder-quicklink'>
             <h2>Try our application solver tool</h2>
-            <ChevronButton text='Click Here' isWhite={true} />
+            <ChevronButton text='Click Here' isWhite={true} onClick={() => nav('/applicationfinder')} />
           </div>
         </div>
         <div className='page-segment'>

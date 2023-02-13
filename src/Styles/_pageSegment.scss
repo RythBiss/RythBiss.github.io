@@ -98,8 +98,49 @@
     min-width: 320px;
 }
 
+.about-segment{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    position: relative;
+    > p{
+        width: 75%;
+        text-align: left;
+        font-size: 1.75rem;
+        @extend %black-text;
+        margin-bottom: 64px;
+    }
+
+    > h1{
+        font-size: 3rem;
+        @extend %black-text;
+        margin: 64px 16px 16px 16px;
+    }
+    >img{
+        width: 200px;
+    }
+}
+
+.last-about-para{
+    padding-bottom: 256px;
+}
+
 @media (max-width: 600px) {
     .training-text{
         font-size: 2rem;
     }
+
+    .about-segment{
+        > p{
+            font-size: 1.25rem;
+        }
+    
+        > h1{
+            font-size: 2.5rem;
+        }
+    }
+    
 }
