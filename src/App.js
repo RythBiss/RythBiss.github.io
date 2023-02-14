@@ -19,8 +19,13 @@ import Twitter from './images/twitter.svg'
 import Youtube from './images/youtube.svg'
 import Instagram from './images/instagram.svg'
 import Linkedin from './images/linkedin.svg'
+import { client } from './lib/client';
 
 function App() {  
+
+useEffect(() => {
+  console.log(client)
+})
 
 const router = createBrowserRouter(
   createRoutesFromElements(
