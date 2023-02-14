@@ -21,11 +21,24 @@ import Instagram from './images/instagram.svg'
 import Linkedin from './images/linkedin.svg'
 import { client } from './lib/client';
 
-function App() {  
+function App() { 
+  
+  //getProducts should be exported so it can be used where its needed. The useEffect below it can be deleted once export is complete.
+const getProducts = async() => {
+  const query = '*[_type == "product"]';
+  const products = await client.fetch(query);
+
+  return {
+    props: { products }
+  }
+}
 
 useEffect(() => {
-  console.log(client)
-})
+  getProducts().then(res => res.props.products.forEach(element => {
+      console.log(element)
+    })
+  )
+}, [])
 
 const router = createBrowserRouter(
   createRoutesFromElements(
