@@ -19,26 +19,8 @@ import Twitter from './images/twitter.svg'
 import Youtube from './images/youtube.svg'
 import Instagram from './images/instagram.svg'
 import Linkedin from './images/linkedin.svg'
-import { client } from './lib/client';
 
 function App() { 
-  
-  //getProducts should be exported so it can be used where its needed. The useEffect below it can be deleted once export is complete.
-const getProducts = async() => {
-  const query = '*[_type == "product"]';
-  const products = await client.fetch(query);
-
-  return {
-    props: { products }
-  }
-}
-
-useEffect(() => {
-  getProducts().then(res => res.props.products.forEach(element => {
-      console.log(element)
-    })
-  )
-}, [])
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -95,12 +77,12 @@ const Root =() => {
             <Link to='/'>Home</Link>
             <Link to='/about'>About</Link>
             <Link to='/products'>Products</Link>
-            <Link to='/customersupport'>Cutomer Support</Link>
-            <Link to='/buyedco'>Buy EDCO</Link>
-            <Link to='/training'>Training</Link>
+            {/* <Link to='/customersupport'>Cutomer Support</Link> */}
+            {/* <Link to='/buyedco'>Buy EDCO</Link> */}
+            {/* <Link to='/training'>Training</Link> */}
             <Link to='/applicationfinder'>Search by Application</Link>
-            <Link to='/login'>Login</Link>
-            <Link to='/register'>Register</Link>
+            {/* <Link to='/login'>Login</Link> */}
+            {/* <Link to='/register'>Register</Link> */}
           </nav>
           :
           <Outlet />

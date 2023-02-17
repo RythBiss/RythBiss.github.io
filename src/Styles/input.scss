@@ -9,10 +9,15 @@
 @use 'redbar';
 @use 'buttons';
 @use 'appFinder';
+@use 'products';
 
 *{
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 400;
+}
+
+*:focus {
+    outline: none;
 }
 
 html, body{

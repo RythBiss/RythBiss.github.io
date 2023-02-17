@@ -1,3 +1,5 @@
+import category from "./category";
+
 export default {
     name: 'product',
     title: 'Product',
@@ -15,11 +17,6 @@ export default {
         {
             name: 'name',
             title: 'Name',
-            type: 'string'
-        },
-        {
-            name: 'catagory',
-            title: 'Catagory',
             type: 'string'
         },
         {
@@ -47,6 +44,12 @@ export default {
             name: 'details',
             title: 'Details',
             type: 'string'
+        },
+        {
+            name: 'category',
+            title: 'Category',
+            type: 'reference',
+            to: [{type: 'category'}]
         }
     ]
 }
