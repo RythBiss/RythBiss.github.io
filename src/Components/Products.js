@@ -9,6 +9,7 @@ import HexArt from '../images/hex-art.svg'
 export default function Products() {
 
   const [categories, setCategories] = useState(null);
+  const [products, setProducts] = useState(null);
   const [search, setSearch] = useState('');
 
 
@@ -27,8 +28,9 @@ export default function Products() {
     }
 
   }
-  const getProducts = async() => {
-    const query = '*[_type == "product" && category._ref == "6a7dee27-f59e-4d19-92a9-a110a8bcf9ee"]';
+  const getProducts = async(id) => {
+    console.log('id passed is ', id)
+    const query = `*[_type == "product" && category._ref == "${id}"]`;
     const products = await client.fetch(query);
 
     return {
@@ -41,9 +43,6 @@ export default function Products() {
     .then(res => {
       setCategories(res.props.categories);
     })
-
-    getProducts()
-    .then(res => console.log('products: ', res))
   }, [])
 
   return (
@@ -58,15 +57,26 @@ export default function Products() {
         </form>
         <div className='products'>
           {categories !== null &&
-            categories.map((element, index) => {
-              return <Card key ={index} text={element.name} image={urlFor(element.image[0].asset).width(256).url()} />
-            })
+            <>
+              { !products ?
+                categories.map((element, index) => {
+                  return <Card key ={index} text={element.name} image={urlFor(element.image[0].asset).width(256).url()} onClick={() => getProducts(element._id).then(res => setProducts(res.props.products))} />
+              })
+              :
+                products.map((element, index) => {
+                  return <Card key ={index} text={element.name} image={urlFor(element.image[0].asset).width(256).url()} onClick={() => console.log(element.name)} />
+              })
+              }
+            </>
           }
         </div>
-        <div className='art-container'>
+        { products &&
+          <button onClick={() => setProducts(null)} className='red-button'>Categories</button>
+        }
+        {/* <div className='art-container'>
           <img className='hex-art' src={HexArt} alt='hex art'/>
           <img className='hex-art alt-position' src={HexArt} alt='hex art'/>
-        </div> 
+        </div>  */}
       </div>
     </>
   )

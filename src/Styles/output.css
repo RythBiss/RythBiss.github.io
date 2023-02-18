@@ -332,12 +332,11 @@ nav.mobile-nav > * {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-left: 16px;
-  width: auto;
+  padding: 4px 16px;
 }
 .red-button > img, .white-button > img {
   height: 1em;
-  margin: 8px;
+  margin-left: 8px;
 }
 
 .white-button {
