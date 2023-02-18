@@ -3,15 +3,17 @@ import { client, urlFor } from '../lib/client';
 import Card from './Card';
 import ImageBanner from './ImageBanner';
 import HexArt from '../images/hex-art.svg'
+import { createSearchParams, useNavigate } from 'react-router-dom';
 
 
 
 export default function Products() {
 
+  const nav = useNavigate();
+
   const [categories, setCategories] = useState(null);
   const [products, setProducts] = useState(null);
   const [search, setSearch] = useState('');
-
 
   const handleSearchChange =(e) => {
     console.log(e.target.value)
@@ -36,6 +38,15 @@ export default function Products() {
     return {
       props: { products }
     }
+  }
+
+  const navToProduct = (id) => {
+    const params = {id: id};
+
+    nav({
+      pathname:'/product',
+      search: `${createSearchParams(params)}`
+    })
   }
   
   useEffect(() => {
@@ -64,19 +75,19 @@ export default function Products() {
               })
               :
                 products.map((element, index) => {
-                  return <Card key ={index} text={element.name} image={urlFor(element.image[0].asset).width(256).url()} onClick={() => console.log(element.name)} />
+                  return <Card key ={index} text={element.name} image={urlFor(element.image[0].asset).width(256).url()} onClick={() => navToProduct(element._id)} />
               })
               }
             </>
           }
         </div>
         { products &&
-          <button onClick={() => setProducts(null)} className='red-button'>Categories</button>
+          <button onClick={() => setProducts(null)} className='red-button'>Back to Categories</button>
         }
-        {/* <div className='art-container'>
+        <div className='art-container'>
           <img className='hex-art' src={HexArt} alt='hex art'/>
           <img className='hex-art alt-position' src={HexArt} alt='hex art'/>
-        </div>  */}
+        </div> 
       </div>
     </>
   )

@@ -19,6 +19,7 @@ import Twitter from './images/twitter.svg'
 import Youtube from './images/youtube.svg'
 import Instagram from './images/instagram.svg'
 import Linkedin from './images/linkedin.svg'
+import ProductPage from './Components/ProductPage';
 
 function App() { 
 
@@ -34,6 +35,7 @@ const router = createBrowserRouter(
       <Route path='applicationfinder' element={<ApplicationSearch />} />
       <Route path='login' element={<Login />} />
       <Route path='register' element={<Register />} />
+      <Route path='product' element={<ProductPage />} />
     </Route>
   )
 )

@@ -333,6 +333,7 @@ nav.mobile-nav > * {
   justify-content: center;
   align-items: center;
   padding: 4px 16px;
+  z-index: 1;
 }
 .red-button > img, .white-button > img {
   height: 1em;
