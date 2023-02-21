@@ -51,9 +51,9 @@ export default function Home() {
           <div className='training-container'>
             <h2 className='training-text'>Check out our training courses and certifications</h2>
             <div className='training-red-bars-container'>
-              <RedBar icon={Playlist} text='Browse our training library' />
-              <RedBar icon={Camera} text='Learn about our machines' />
-              <RedBar icon={Hat} text='Get certified with EDCO products' />
+              <RedBar icon={Playlist} text='Browse our training library' clickable={true} />
+              <RedBar icon={Camera} text='Learn about our machines' clickable={true} />
+              <RedBar icon={Hat} text='Get certified with EDCO products' clickable={true} />
             </div>
           </div>
         </div>

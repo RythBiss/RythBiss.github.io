@@ -1,4 +1,4 @@
-.red-bar > *, .card-text, #appfinder-quicklink, .image-overlay > *, .footer-text {
+.product-specs > *, .product-details, .red-bar > *, .card-text, #appfinder-quicklink, .image-overlay > *, .footer-text {
   color: #F5F5F5;
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   text-align: center;
@@ -12,7 +12,7 @@
   margin: 0;
 }
 
-.app-finder-container > section, .red-button, .white-button, .card, #appfinder-quicklink, .about-segment > p {
+.product-image-frame, .app-finder-container > section, .red-button, .white-button, .card, #appfinder-quicklink, .about-segment > p {
   box-shadow: 4px 4px 16px 0 rgba(0, 0, 0, 0.25);
 }
 
@@ -316,6 +316,7 @@ nav.mobile-nav > * {
   border-radius: 4px;
   padding: 16px;
   margin: 16px;
+  z-index: 1;
 }
 .red-bar > * {
   max-height: 100%;
@@ -476,6 +477,95 @@ nav.mobile-nav > * {
   color: rgba(0, 0, 0, 0.4784313725);
 }
 
+.product-page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product-name {
+  margin: 32px;
+}
+
+.product-info-container {
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  margin: 32px;
+  width: 75%;
+}
+
+.product-image-frame {
+  max-width: 1080px;
+  width: 50%;
+  height: fit-content;
+  margin: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.product-image-frame > * {
+  width: 100%;
+}
+
+.product-specs-container {
+  width: 50%;
+  padding: 0 32px;
+}
+
+.product-specs > * {
+  margin: 0;
+}
+.product-specs > ul {
+  list-style-type: square;
+}
+.product-specs > ul > li {
+  font-size: 1.1rem;
+}
+
+.price, .power-list {
+  background-color: #D73648;
+  border-radius: 4px;
+  padding: 16px;
+  margin: 8px 0;
+  text-align: left;
+}
+.price > h2, .power-list > h2 {
+  margin: 0;
+  text-align: left;
+}
+.price > ul, .power-list > ul {
+  margin: 0;
+}
+.price > ul > li, .power-list > ul > li {
+  text-align: left;
+}
+
+.product-details {
+  background-color: #D73648;
+  border-radius: 4px;
+  padding: 8px;
+  text-align: left;
+}
+
+.red-list {
+  background-color: #D73648;
+  margin: 8px;
+}
+
+@media only screen and (max-width: 600px) {
+  .product-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .product-image-frame {
+    width: 100%;
+  }
+  .product-specs-container {
+    width: 100%;
+  }
+}
 * {
   font-family: "Barlow Condensed", sans-serif;
   font-weight: 400;
