@@ -1,4 +1,3 @@
-import category from "./category";
 
 export default {
     name: 'product',
@@ -44,6 +43,12 @@ export default {
             name: 'details',
             title: 'Details',
             type: 'string'
+        },
+        {
+            name: 'bullets',
+            title: 'Bullets',
+            type: 'array',
+            of:[{type: 'string'}]
         },
         {
             name: 'category',

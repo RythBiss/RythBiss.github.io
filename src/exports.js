@@ -1,0 +1,1 @@
+export const featureMissingAlert = () => alert('Feature not implemented yet.');
