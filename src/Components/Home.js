@@ -58,7 +58,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <ImageBanner image='https://i0.wp.com/lupaband.co.uk/wp-content/uploads/2019/12/AdobeStock_305315398-scaled.jpeg?ssl=1' smallText='In business since 1959' bigText='Learn about our mission' buttonText='Buy EDCO' />
+      <ImageBanner image='https://i0.wp.com/lupaband.co.uk/wp-content/uploads/2019/12/AdobeStock_305315398-scaled.jpeg?ssl=1' smallText='Become part of the family' bigText='See where you can find EDCO products near you' buttonText='Buy EDCO' />
     </>
   )
 }

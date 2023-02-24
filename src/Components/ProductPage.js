@@ -4,6 +4,8 @@ import { client, urlFor } from '../lib/client';
 import ImageBanner from './ImageBanner';
 import HexArt from '../images/hex-art.svg'
 import { featureMissingAlert } from '../exports';
+import SmallArrow from '../images/small-arrow-white.svg'
+import AnimatedButton from './AnimatedButton'
 
 
 export default function ProductPage() {
@@ -69,9 +71,9 @@ export default function ProductPage() {
                     {productData?.image.length > 1 &&
                         <>
                             <div className='album-controls' >
-                                <button onClick={() => changeImage(-1)} className='red-button'>Prev</button>
+                            <AnimatedButton onClick={() => changeImage(-1)} className='red-button rot180' image={SmallArrow} />
                                 <h3>{albumPos+1}</h3>
-                                <button onClick={() => changeImage(1)} className='red-button'>Next</button>
+                            <AnimatedButton onClick={() => changeImage(1)} className='red-button' image={SmallArrow} />
                             </div>
                         </>
                     }
@@ -91,7 +93,7 @@ export default function ProductPage() {
                     </div>
                     <div className='product-purchase'>
                         <input type='number' name='product-quantity' value={quantityValue} onChange={(e) => verifyQuantity(e.target.value)} />
-                        <button className='white-button' onClick={featureMissingAlert}>Add To Cart</button>
+                        <AnimatedButton className='white-button' onClick={featureMissingAlert} text='Add To Cart'/>
                     </div>
                 </div>
             </div>

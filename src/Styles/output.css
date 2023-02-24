@@ -1,18 +1,18 @@
-.product-name, .product-specs > *, .red-bar > *, .card-text, #appfinder-quicklink, .image-overlay > *, .footer-text {
+.product-name, .product-specs > *, .red-bar > *, .card-text > h4, #appfinder-quicklink, .image-overlay > *, .footer-text {
   color: #F5F5F5;
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   text-align: center;
   margin: 0;
 }
 
-.product-details, .app-finder-head-text, .app-finder-box-text, .page-segment > h2, .about-segment > p, .about-segment > h1 {
+.power-list > ul > li, .product-details, .app-finder-head-text, .app-finder-box-text, .page-segment > h2, .about-segment > p, .about-segment > h1 {
   color: #353535;
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   text-align: center;
   margin: 0;
 }
 
-.product-name, .product-image-frame, .product-specs > *, .product-purchase, .app-finder-container > section, .red-button, .white-button, .card, #appfinder-quicklink, .about-segment > p {
+.product-name, .product-image-frame, .product-specs > *, .power-list > ul > li, .product-purchase, .app-finder-container > section, .red-button, .white-button, .card, #appfinder-quicklink, .about-segment > p, nav.mobile-nav {
   box-shadow: 4px 4px 16px 0 rgba(0, 0, 0, 0.25);
 }
 
@@ -70,6 +70,9 @@ nav.mobile-nav {
   flex-direction: column;
   align-items: flex-end;
   background-color: #F5F5F5;
+  position: absolute;
+  right: 0;
+  z-index: 5;
   height: 100%;
 }
 nav.mobile-nav > * {
@@ -77,7 +80,7 @@ nav.mobile-nav > * {
   color: #353535;
   font-size: 2.25rem;
   text-align: right;
-  margin: 4px;
+  margin: 8px 32px;
 }
 
 .image-banner {
@@ -159,22 +162,23 @@ nav.mobile-nav > * {
 }
 
 .break-flow-container {
-  height: 120px;
+  height: 100px;
   width: 100%;
 }
 
 .page-segment {
-  min-height: 100vh;
   width: 100%;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding: 32px 0;
 }
 .page-segment > h2 {
   max-width: 200px;
   font-size: 2rem;
+  margin-bottom: 32px;
 }
 
 .page-segment-container {
@@ -227,6 +231,8 @@ nav.mobile-nav > * {
 .training-red-bars-container {
   width: 50%;
   min-width: 320px;
+  max-width: 380px;
+  padding: 0;
 }
 
 .about-segment {
@@ -242,7 +248,7 @@ nav.mobile-nav > * {
   width: 60%;
   text-align: left;
   font-size: 1.75rem;
-  margin-bottom: 64px;
+  margin-bottom: 48px;
   background-color: #F5F5F5;
   border-radius: 4px;
   padding: 16px 32px;
@@ -273,13 +279,13 @@ nav.mobile-nav > * {
 }
 .card {
   padding: 0;
-  margin: 4px;
+  margin: 16px;
   border: none;
   position: relative;
   display: flex;
   flex-direction: column;
   border-radius: 4px;
-  background-color: #D73648;
+  background-color: #F5F5F5;
   overflow: hidden;
   width: 100%;
   max-width: 200px;
@@ -302,9 +308,13 @@ nav.mobile-nav > * {
 }
 
 .card-text {
+  width: 100%;
+  background-color: #D73648;
+}
+.card-text > h4 {
   font-size: 1.25rem;
-  margin: 16px;
   text-align: center;
+  margin: 16px;
 }
 
 .red-bar {
@@ -314,10 +324,11 @@ nav.mobile-nav > * {
   justify-content: space-between;
   height: 64px;
   border-radius: 4px;
-  padding: 16px;
-  margin: 16px;
+  margin: 16px 0;
   z-index: 1;
+  border: none;
   cursor: pointer;
+  width: 100%;
 }
 .red-bar > * {
   max-height: 100%;
@@ -345,6 +356,10 @@ nav.mobile-nav > * {
 .white-button {
   background-color: #F5F5F5;
   color: #353535;
+}
+
+.rot180 {
+  rotate: 180deg;
 }
 
 .app-finder-container {
@@ -521,8 +536,10 @@ nav.mobile-nav > * {
 }
 .album-controls > button {
   margin: 0;
-  width: 40%;
   box-shadow: none;
+}
+.album-controls > button > img {
+  margin: 0;
 }
 .album-controls > h3 {
   width: 32px;
@@ -569,6 +586,17 @@ nav.mobile-nav > * {
   text-align: left;
 }
 
+.power-list > ul {
+  padding: 0;
+}
+.power-list > ul > li {
+  background-color: #F5F5F5;
+  margin: 4px 0;
+  border-radius: 4px;
+  padding: 4px;
+  list-style-type: none;
+}
+
 .product-purchase {
   background-color: #D73648;
   display: flex;
@@ -590,7 +618,7 @@ nav.mobile-nav > * {
   z-index: 1;
   width: 75%;
   align-self: flex-start;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin: 32px 0 50% 12.5%;
 }
 
@@ -640,6 +668,7 @@ html, body {
 
 main {
   min-height: 100vh;
+  position: relative;
 }
 
 /*# sourceMappingURL=output.css.map */

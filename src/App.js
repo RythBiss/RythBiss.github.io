@@ -62,9 +62,9 @@ const Root =() => {
       <button id='logo' onClick={ () => {console.log('logo')} }>
         <img src={Logo} alt='logo'></img>
       </button>
-      <button onClick={ () => {console.log('search')} }>
+      {/* <button onClick={ () => {console.log('search')} }>
         <img src={SeachIcon} alt='search' />
-      </button>
+      </button> */}
       <button onClick={ () => {setMenuOpen(prev => !prev)} }>{
       menuOpen ?
         <img src={Close} alt='Close Menu' />
@@ -74,7 +74,7 @@ const Root =() => {
       </button>
     </header>
     <main>
-      {menuOpen ? 
+      {menuOpen && 
           <nav className='mobile-nav'>
             <Link to='/'>Home</Link>
             <Link to='/about'>About</Link>
@@ -86,9 +86,8 @@ const Root =() => {
             {/* <Link to='/login'>Login</Link> */}
             {/* <Link to='/register'>Register</Link> */}
           </nav>
-          :
-          <Outlet />
           }
+          <Outlet />
     </main>
     <footer>
       <div className='footer-text'>

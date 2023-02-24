@@ -3,6 +3,10 @@ import Card from './Card';
 import ChevronButton from './ChevronButton';
 import ImageBanner from './ImageBanner'
 import HexArt from '../images/hex-art.svg'
+import AnimatedButton from './AnimatedButton';
+import SmallArrow from '../images/small-arrow-white.svg'
+import { featureMissingAlert } from '../exports';
+import { motion } from 'framer-motion';
 
 
 export default function ApplicationSearch() {
@@ -281,14 +285,28 @@ const elementCycle = [appElement, finishElement, powerElement, machineElement, s
         <div className='app-finder-container'>  
           <h2 className='app-finder-head-text'>Application Solver Tool</h2>
           <div className='progress-bar'>
-            <div className={`${cyclePos > 0 ? 'progress-bar-filler' : 'progress-bar-empty'}`} />
-            <div className={`${cyclePos > 1 ? 'progress-bar-filler' : 'progress-bar-empty'}`}/>
-            <div className={`${cyclePos > 2 ? 'progress-bar-filler' : 'progress-bar-empty'}`}/>
-            <div className={`${cyclePos > 3 ? 'progress-bar-filler' : 'progress-bar-empty'}`}/>
+            <motion.div className='progress-bar-empty'
+              initial={{backgroundColor: 'fff'}}
+              animate={{backgroundColor: cyclePos > 0 ? '#D73648' : 'fff'}}
+              transition={{ duration: 2 }}
+            />
+            <motion.div className='progress-bar-empty'
+              animate={{backgroundColor: cyclePos > 1 ? '#D73648' : 'fff'}}
+              transition={{ ease: "anticipate", duration: 2 }}
+            />
+            <motion.div className='progress-bar-empty'
+              animate={{backgroundColor: cyclePos > 2 ? '#D73648' : 'fff'}}
+              transition={{ ease: "anticipate", duration: 2 }}
+            />
+            <motion.div className='progress-bar-empty'
+              animate={{backgroundColor: cyclePos > 3 ? '#D73648' : 'fff'}}
+              transition={{ ease: "anticipate", duration: 2 }}
+            />
           </div>
           {elementCycle[cyclePos]}
           <div className='tool-nav-container '>
-            {cyclePos > 0 && <button onClick={() => progressCycle(-1)} className='red-button'>Back</button>}
+            {cyclePos > 0 && <AnimatedButton onClick={() => progressCycle(-1)} className='red-button rot180' image={SmallArrow} />}
+            {cyclePos === 4 && <AnimatedButton onClick={featureMissingAlert} text='Add To Cart' className='white-button' />}
           </div>
         </div>
       </div>

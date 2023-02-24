@@ -4,6 +4,7 @@ import Card from './Card';
 import ImageBanner from './ImageBanner';
 import HexArt from '../images/hex-art.svg'
 import { createSearchParams, useNavigate } from 'react-router-dom';
+import AnimatedButton from './AnimatedButton';
 
 
 
@@ -62,9 +63,9 @@ export default function Products() {
       <div className='page-segment products-layout'>
         <form  className='product-search'>
           <h2>Browse Products By Catagory</h2>
-          <div className='search-container'>
+          {/* <div className='search-container'>
             <input className='search' name='Search' type='text' value={search} onChange={handleSearchChange} placeholder="Search"/>
-          </div>
+          </div> */}
         </form>
         <div className='products'>
           {categories !== null &&
@@ -82,7 +83,7 @@ export default function Products() {
           }
         </div>
         { products &&
-          <button onClick={() => setProducts(null)} className='red-button'>Back to Categories</button>
+          <AnimatedButton onClick={() => setProducts(null)} className='red-button' text='Back to Categories' />
         }
         <div className='art-container'>
           <img className='hex-art' src={HexArt} alt='hex art'/>

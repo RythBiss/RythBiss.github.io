@@ -3,7 +3,7 @@
 
 .card{
     padding: 0;
-    margin: 4px;
+    margin: 16px;
     border: none;
     position: relative;
     display: flex;
@@ -11,7 +11,7 @@
     border-radius: 4px;
     @extend %box-shadow;
 
-    background-color: colors.$red;
+    background-color: colors.$white;
     overflow: hidden;
 
     width: 100%;
@@ -37,8 +37,12 @@
 }
 
 .card-text{
-    @extend %white-text;
-    font-size: 1.25rem;
-    margin: 16px;
-    text-align: center;
+    width: 100%;
+    background-color: colors.$red;
+    > h4{
+        @extend %white-text;
+        font-size: 1.25rem;
+        text-align: center;
+        margin: 16px;
+    }
 }
