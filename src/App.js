@@ -1,6 +1,6 @@
 import './Styles/output.css';
 import React, { useState, useEffect }from 'react'
-import { createBrowserRouter, createRoutesFromElements, Link, Outlet, Route, RouterProvider, useLocation } from "react-router-dom";
+import { createBrowserRouter, createRoutesFromElements, Link, Outlet, Route, RouterProvider, useLocation, useNavigate } from "react-router-dom";
 import Home from './Components/Home';
 import About from './Components/About';
 import Products from './Components/Products';
@@ -20,6 +20,8 @@ import Youtube from './images/youtube.svg'
 import Instagram from './images/instagram.svg'
 import Linkedin from './images/linkedin.svg'
 import ProductPage from './Components/ProductPage';
+import { AnimatePresence, motion } from 'framer-motion';
+
 
 function App() { 
 
@@ -52,14 +54,44 @@ const Root =() => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   let location = useLocation();
+  const nav = useNavigate();
+
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const handleScroll = () => {
+      const position = window.pageYOffset;
+      setScrollPosition(position);
+  };
+
+useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+        window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     setMenuOpen(false);
   }, [location])
 
+  const varients = {
+    open: {
+      x: '0%'
+    },
+    closed: {
+      x: '100%'
+    },
+    down: {
+      y: '0%'
+    },
+    up: {
+      y: '-100%'
+    }
+  }
+
   return <>
     <header>
-      <button id='logo' onClick={ () => {console.log('logo')} }>
+      <button id='logo' onClick={() => nav('/')}>
         <img src={Logo} alt='logo'></img>
       </button>
       {/* <button onClick={ () => {console.log('search')} }>
@@ -73,20 +105,73 @@ const Root =() => {
         }
       </button>
     </header>
-    <main>
-      {menuOpen && 
-          <nav className='mobile-nav'>
-            <Link to='/'>Home</Link>
-            <Link to='/about'>About</Link>
-            <Link to='/products'>Products</Link>
-            {/* <Link to='/customersupport'>Cutomer Support</Link> */}
-            {/* <Link to='/buyedco'>Buy EDCO</Link> */}
-            {/* <Link to='/training'>Training</Link> */}
-            <Link to='/applicationfinder'>Search by Application</Link>
-            {/* <Link to='/login'>Login</Link> */}
-            {/* <Link to='/register'>Register</Link> */}
-          </nav>
+    <AnimatePresence>
+    {scrollPosition > 100 &&
+      <motion.header className='fixed-header'
+        variants={varients}
+        initial='up'
+        animate='down'
+        exit='up'
+        transition={{ease: 'linear', duration: '0.2'}}
+      >
+        <button id='logo' onClick={() => nav('/')}>
+          <img src={Logo} alt='logo'></img>
+        </button>
+        {/* <button onClick={ () => {console.log('search')} }>
+          <img src={SeachIcon} alt='search' />
+        </button> */}
+        <button onClick={ () => {setMenuOpen(prev => !prev)} }>{
+        menuOpen ?
+          <img src={Close} alt='Close Menu' />
+          :
+          <img src={MenuIcon} alt='Menu' />
           }
+        </button>
+      </motion.header>
+    }
+    </AnimatePresence>
+    <main>
+      <AnimatePresence>
+        {menuOpen && 
+            <motion.nav className='mobile-nav'
+              variants={varients}
+              initial='closed'
+              animate='open'
+              exit='closed'
+              transition={{ease: 'linear', duration: '0.15'}}
+            >
+              <motion.div
+                initial='#F5F5F5'
+                whileHover={{backgroundColor: '#dfdfdf'}}
+                whileTap={{backgroundColor: '#bbbbbb'}}
+                transition={{ease: 'linear', duration: '0.1'}}
+              ><Link to='/'>Home</Link></motion.div>
+              <motion.div
+                initial='#F5F5F5'
+                whileHover={{backgroundColor: '#dfdfdf'}}
+                whileTap={{backgroundColor: '#bbbbbb'}}
+                transition={{ease: 'linear', duration: '0.1'}}
+              ><Link to='/about'>About</Link></motion.div>
+              <motion.div
+                              initial='#F5F5F5'
+                whileHover={{backgroundColor: '#dfdfdf'}}
+                whileTap={{backgroundColor: '#bbbbbb'}}
+                transition={{ease: 'linear', duration: '0.1'}}
+              ><Link to='/products'>Products</Link></motion.div>
+              {/* <Link to='/customersupport'>Cutomer Support</Link> */}
+              {/* <Link to='/buyedco'>Buy EDCO</Link> */}
+              {/* <Link to='/training'>Training</Link> */}
+              <motion.div
+                              initial='#F5F5F5'
+                whileHover={{backgroundColor: '#dfdfdf'}}
+                whileTap={{backgroundColor: '#bbbbbb'}}
+                transition={{ease: 'linear', duration: '0.1'}}
+              ><Link to='/applicationfinder'>Search by Application</Link></motion.div>
+              {/* <Link to='/login'>Login</Link> */}
+              {/* <Link to='/register'>Register</Link> */}
+            </motion.nav>
+            }
+          </AnimatePresence>
           <Outlet />
     </main>
     <footer>

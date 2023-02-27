@@ -274,6 +274,15 @@ const machineElement = <>
 
 const elementCycle = [appElement, finishElement, powerElement, machineElement, solutionElement];
 
+const varients = {
+  Off: {
+    backgroundColor: '#FFFFFF00'
+  },
+  On: {
+    backgroundColor: '#D73648'
+  }
+}
+
   return (
     <>
       <ImageBanner image='https://cf.specifyconcrete.org/img/pouring-concrete-over-rebar.jpg' smallText="Don't know where to start?" bigText="Use our application solver tool" />
@@ -286,21 +295,24 @@ const elementCycle = [appElement, finishElement, powerElement, machineElement, s
           <h2 className='app-finder-head-text'>Application Solver Tool</h2>
           <div className='progress-bar'>
             <motion.div className='progress-bar-empty'
-              initial={{backgroundColor: 'fff'}}
-              animate={{backgroundColor: cyclePos > 0 ? '#D73648' : 'fff'}}
-              transition={{ duration: 2 }}
+              variants={varients}
+              initial='Off'
+              animate={cyclePos > 0 ? 'On' : 'Off'}
             />
             <motion.div className='progress-bar-empty'
-              animate={{backgroundColor: cyclePos > 1 ? '#D73648' : 'fff'}}
-              transition={{ ease: "anticipate", duration: 2 }}
+              variants={varients}
+              initial='Off'
+              animate={cyclePos > 1 ? 'On' : 'Off'}
             />
             <motion.div className='progress-bar-empty'
-              animate={{backgroundColor: cyclePos > 2 ? '#D73648' : 'fff'}}
-              transition={{ ease: "anticipate", duration: 2 }}
+              variants={varients}
+              initial='Off'
+              animate={cyclePos > 2 ? 'On' : 'Off'}
             />
             <motion.div className='progress-bar-empty'
-              animate={{backgroundColor: cyclePos > 3 ? '#D73648' : 'fff'}}
-              transition={{ ease: "anticipate", duration: 2 }}
+              variants={varients}
+              initial='Off'
+              animate={cyclePos > 3 ? 'On' : 'Off'}
             />
           </div>
           {elementCycle[cyclePos]}

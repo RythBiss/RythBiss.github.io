@@ -8,6 +8,8 @@ export default function RedBar(props) {
     whileHover={{
       scale: 1.05
     }}
+
+    onClick={props.onClick}
     >
         {props.icon &&
           <img src={props.icon} alt='icon' />        }

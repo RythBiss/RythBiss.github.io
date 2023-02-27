@@ -8,6 +8,7 @@ import RedBar from './RedBar'
 import ChevronButton from './ChevronButton'
 import HexArt from '../images/hex-art.svg'
 import { useNavigate } from 'react-router-dom'
+import { featureMissingAlert } from '../exports'
 
 export default function Home() {
 
@@ -27,17 +28,17 @@ export default function Home() {
             <ChevronButton text='Click Here' isWhite={true} onClick={() => nav('/applicationfinder')} />
           </div>
         </div>
-        <div className='page-segment'>
+        <div className='page-segment flex-start'>
           <h2>Browse Machines By Category</h2>
           <div className='browse-quicklinks'>
-            <Card text='CONCRETE GRINDERS' image='https://www.edcoinc.com/storage/products/TL-9%20Turbo-Lite%20Grinder%20Machine%20Thumbnail.jpg'/>
-            <Card text='CRETE-PLANERS' image='https://www.edcoinc.com/storage/products/CPL-8%20Gas%20Machine%20Thumbnail.jpg'/>
-            <Card text='CRETE-CRUSHERS' image='https://www.edcoinc.com/storage/products/CD-5%20Machine%20Thumbnail.jpg'/>
-            <Card text='WALK BEHIND SAWS' image='https://www.edcoinc.com/storage/products/SK-14%20Gas%20Machine%20Thumbnail.jpg'/>
-            <Card text='MASONRY SAWS' image='https://www.constructioncomplete.com/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/e/d/edc-bb14saw_2.jpg'/>
-            <Card text='VACUUMS' image='https://edcostore.com/wp-content/uploads/2017/12/VAC200_wHEPA.jpg'/>
+            <Card onClick={() => nav('products')} text='CONCRETE GRINDERS' image='https://www.edcoinc.com/storage/products/TL-9%20Turbo-Lite%20Grinder%20Machine%20Thumbnail.jpg'/>
+            <Card onClick={() => nav('products')}  text='CRETE-PLANERS' image='https://www.edcoinc.com/storage/products/CPL-8%20Gas%20Machine%20Thumbnail.jpg'/>
+            <Card onClick={() => nav('products')}  text='CRETE-CRUSHERS' image='https://www.edcoinc.com/storage/products/CD-5%20Machine%20Thumbnail.jpg'/>
+            <Card onClick={() => nav('products')}  text='WALK BEHIND SAWS' image='https://www.edcoinc.com/storage/products/SK-14%20Gas%20Machine%20Thumbnail.jpg'/>
+            <Card onClick={() => nav('products')}  text='MASONRY SAWS' image='https://www.constructioncomplete.com/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/e/d/edc-bb14saw_2.jpg'/>
+            <Card onClick={() => nav('products')}  text='VACUUMS' image='https://edcostore.com/wp-content/uploads/2017/12/VAC200_wHEPA.jpg'/>
           </div>
-          <ChevronButton text='More Categories' isWhite={false} />
+          <ChevronButton text='More Categories' isWhite={false} onClick={() => {nav('/products')}}/>
         </div>
       </div>
       
@@ -47,13 +48,13 @@ export default function Home() {
           <img className='hex-art' src={HexArt} alt='hex art'/>
           <img className='hex-art alt-position' src={HexArt} alt='hex art'/>
         </div>
-        <div className='page-segment'>
+        <div className='page-segment flex-center'>
           <div className='training-container'>
             <h2 className='training-text'>Check out our training courses and certifications</h2>
             <div className='training-red-bars-container'>
-              <RedBar icon={Playlist} text='Browse our training library' clickable={true} />
-              <RedBar icon={Camera} text='Learn about our machines' clickable={true} />
-              <RedBar icon={Hat} text='Get certified with EDCO products' clickable={true} />
+              <RedBar onClick={featureMissingAlert} icon={Playlist} text='Browse our training library' clickable={true} />
+              <RedBar onClick={featureMissingAlert} icon={Camera} text='Learn about our machines' clickable={true} />
+              <RedBar onClick={featureMissingAlert} icon={Hat} text='Get certified with EDCO products' clickable={true} />
             </div>
           </div>
         </div>
